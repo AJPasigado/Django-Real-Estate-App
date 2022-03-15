@@ -1,0 +1,665 @@
+/* 
+    =======================
+    Global CSS   - Navigation 
+    =======================
+*/
+
+.global-nav {
+    color: rgb(66, 65, 67);
+    background-color: white;
+    width: 100%;
+    padding-left: 7vw;
+}
+
+.global-padding {
+    color: rgb(66, 65, 67);
+    padding-left: 7vw;
+    padding-right: 7vw;
+    padding-top: 10vh;
+}
+
+.global-navsearch {
+    margin-top: 10px;
+    width: 1000px;
+}
+
+.global-navsearchbox {
+    padding: 2px;
+}
+
+.global-navsearchlabel {
+    margin-top: 0.2vh;
+    font-weight: 500;
+}
+
+/* 
+    =======================
+    Global CSS   - Footer 
+    =======================
+*/
+
+.global-footer {
+    color: rgb(66, 65, 67);
+    min-height: 100vh;
+    height: auto;
+    padding-left: 7vw;
+    padding-right: 7vw;
+}
+
+.global-footertext {
+    font-size: 4vh;
+    padding-top: 15vh;
+}
+
+.global-footerform {
+    margin-top: 5vh;
+}
+
+.global-footerformgroup {
+    padding: 5px;
+}
+
+.global-footersubmit {
+    padding-left: 11vw;
+    padding-right: 12vw;
+}
+
+.global-footerimg {
+    display: block;
+    margin-top: 13vw;
+    width: 250px;
+    height: auto;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.global-footercomp {
+    font-weight: 500;
+    margin-top: 30px;
+    font-size: 20px;
+    letter-spacing: 5px;
+}
+
+.global-footercont {
+    font-weight: 500;
+    margin-top: 10px;
+    font-size: 15px;
+    margin-bottom: 100px;
+}
+
+/* 
+    =======================
+    Homepage |  Global
+    =======================
+*/
+
+.home-cont {
+    padding-top: 15vh;
+}
+
+.home-centertext {
+    color: rgb(66, 65, 67);
+    margin-top: 10vh;
+    text-shadow: 20px;
+    font-size: 7vh;
+}
+
+.home-pane {
+    height: 55vh;
+}
+
+/* 
+    =======================
+    Homepage | Search bar
+    =======================
+*/
+
+.home-search {
+    position: absolute;
+    border-radius: 10px;
+    width: 40vw;
+    max-width: 1040px;
+    min-width: 500px;
+    top: 70vh;
+    left: 0;
+    right: 0;
+    margin: auto;
+}
+
+.home-searchform {
+    margin-top: 30px;
+}
+
+/* 
+    =======================
+    Catalog | Global
+    =======================
+*/
+
+.catalog-viewbtn {
+    height: 3vh;
+    min-height: 40px;
+    margin-left: 30px;
+    margin-top: -1vh;
+}
+
+/* 
+    =======================
+    Catalog | Featured Categories
+    =======================
+*/
+
+.catalog-featuredcont {
+    height: auto;
+    margin-bottom: 7vh;
+}
+
+.catalog-featuredtext {
+    font-size: 4vh;
+}
+
+.catalog-featuredtextdesc {
+    font-size: 1.5vh;
+    font-weight: 600;
+}
+
+.catalog-featuredimgcontainer {
+    margin-top: 5%;
+    width: 100%;
+    height: auto;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+.catalog-featuredrow {
+    white-space: nowrap;
+}
+
+.catalog-featuredimgsinglecontainer {
+    position: relative;
+}
+
+/* 
+    =======================
+    Thumbnail Overlay
+    =======================
+*/
+
+.catalog-featuredimg {
+    display: block;
+    width: 340px;
+    height: 230px;
+    margin-left: 3vw;
+    margin-bottom: 45px;
+    border-radius: 10px;
+}
+
+.catalog-featuredimgoverlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: rgba(66, 65, 67, 0.5);
+    overflow: hidden;
+    width: 340px;
+    height: 130px;
+    margin-left: 3vw;
+    margin-bottom: 45px;
+    border-radius: 10px;
+    transition: .5s ease;
+}
+
+.catalog-featuredimgsinglecontainer:hover .catalog-featuredimgoverlay {
+    height: 230px;
+    border-radius: 10px;
+    background-color: rgb(66, 65, 67);
+}
+
+.catalog-featuredimgsinglecontainer:hover .catalog-featuredimgoverlaytexts {
+    text-shadow: 0px 0px 0px #000000;
+}
+
+.catalog-featuredimgoverlaytexts {
+    padding-left: 15px;
+    color: white;
+    text-shadow: 2px 2px 4px #000000;
+}
+
+.catalog-featuredimgoverlaytextprice {
+    font-size: 25px;
+    font-weight: bold;
+    margin-top: 10px;
+    margin-bottom: 0;
+}
+
+.catalog-featuredimgoverlaytexttype {
+    margin: 0;
+    font-size: 15px;
+    font-weight: 500;
+}
+
+.catalog-featuredimgoverlaytextloc {
+    margin-top: 5px;
+    margin-bottom: 40px;
+    white-space: normal;
+    word-wrap: break-word;
+    font-size: 15px;
+    font-weight: 300;
+}
+
+.catalog-featuredoverlayico {
+    width: 30px;
+    height: auto;
+    float: left;
+}
+
+.catalog-featuredoverlayicotext {
+    font-weight: 600;
+    font-size: 12px;
+    margin-left: 40px;
+}
+
+.catalog-featuredoverlaysq {
+    font-size: 12px;
+    margin-left: 40px;
+    margin-top: -20px;
+}
+
+/* 
+    =======================
+    Product Details | Main
+    =======================
+*/
+
+.prod-cont {
+    height: auto;
+    padding: 7vw;
+    padding-top: 5vh;
+    padding-bottom: 10vh;
+}
+
+/* 
+    =======================
+    Product Details | Carousel
+    =======================
+*/
+
+.prod-carousel {
+    width: 95%;
+    height: auto;
+    margin-top: 5%;
+    margin-bottom: 10vh;
+}
+
+.prod-carouselimgcont {
+    height: 50vh;
+}
+
+.prod-carouselimg {
+    height: 50vh;
+    border-radius: 10px;
+}
+
+.prod-carouseltext {
+    background-color: rgba(66, 65, 67, 0.5);
+    border-radius: 10px;
+}
+
+.carousel-indicators {
+    list-style: none;
+}
+
+.carousel-indicators li,
+.carousel-indicators li.active {
+    width: 150px;
+    height: auto;
+    position: relative;
+    top: 7vh;
+    margin: 10px;
+}
+
+.carousel-indicators img {
+    position: absolute;
+    width: 100%;
+    border-radius: 10%;
+    height: auto;
+    top: 0;
+    left: 0;
+}
+
+.carousel-indicators img:hover {
+    z-index: 2;
+    margin-right: 200px;
+    box-shadow: 1px 1px 10px black;
+    width: 200px;
+    border-radius: 10%;
+    transition: width 0.2s;
+}
+
+/* 
+    =======================
+    Product Details | Main Details
+    =======================
+*/
+
+.prod-price {
+    font-size: 60px;
+    font-weight: 900;
+    margin-top: 2vh;
+}
+
+.prod-title {
+    font-size: 15px;
+    font-weight: 400;
+}
+
+.prod-type {
+    font-size: 15px;
+    font-weight: 600;
+}
+
+.prod-location {
+    font-size: 15px;
+    font-weight: 100;
+}
+
+.prod-ico {
+    width: 40px;
+    height: auto;
+    float: left;
+}
+
+.prod-icotext {
+    font-size: 30px;
+    font-weight: 500;
+    margin-left: 60px;
+}
+
+.prod-icotext2 {
+    font-size: 15px;
+    font-weight: 100;
+    margin-left: 60px;
+    margin-top: -25px;
+}
+
+.prod-icocont {
+    width: 15%;
+    margin-top: 30px;
+    margin-bottom: 10px;
+    margin-left: 20px;
+}
+
+.prod-desccontread {
+    color: white;
+    cursor: pointer;
+}
+
+.prod-desccont {
+    max-height: 220px;
+    padding-right: 10vw;
+    margin-bottom: 2vh;
+    overflow: hidden;
+    transition: .5s ease;
+}
+
+.prod-desccontmax {
+    max-height: 1000px;
+    transition: .5s ease;
+}
+
+.prod-badge {
+    margin-left: 10px;
+}
+/* 
+    =======================
+    Product Features | Details Pane
+    =======================
+*/
+
+.prod-detailscont {
+    height: auto;
+}
+
+.prod-detailsdetailtitle {
+    font-size: 4vh;
+    padding-top: 13vh;
+    font-weight: bold;
+    margin-bottom: 5vh;
+}
+
+.prod-detailsdetailtblcont {
+    padding-right: 7vw;
+    margin-bottom: 15vh;
+}
+
+.prod-featurestitle {
+    font-size: 4vh;
+    padding-top: 13vh;
+    font-weight: bold;
+    margin-bottom: 6vh;
+}
+
+.prod-featurestext {
+    margin-top: 25px;
+}
+
+.prod-featuresico {
+    width: 2%;
+    height: auto;
+    margin-right: 10px;
+}
+
+.prod-featurestextcont {
+    margin-bottom: 15vh;
+}
+
+/* 
+    =======================
+    Product Features | Broker Pane
+    =======================
+*/
+
+.prod-contactbrokercont {
+    height: auto;
+}
+
+.prod-contactformgroup {
+    padding: 5px;
+}
+
+.prod-contactsinglecont {
+    max-height: 130px;
+    width: 500px;
+    transition: .5s ease;
+}
+
+.prod-contactmoredetails {
+    opacity: 0;
+}
+
+.prod-contactsinglecont:hover {
+    box-shadow: 1px 1px 20px rgb(66, 65, 67);
+    border-radius: 10px;
+    max-height: 330px;
+    transition: .5s ease;
+}
+
+.prod-contactsinglecont:hover .prod-contactmoredetails{
+    opacity: 1;
+    transition: .5s ease;
+}
+
+.prod-contactico {
+    width: 5%;
+    height: 5%;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    margin-left: 20px;
+    float: left;
+}
+
+.prod-contacticotext {
+    margin-top: 5px;
+    margin-left: 20px;
+    margin-bottom: 20px;
+}
+
+.prod-contactname {
+    margin-top: 25px;
+    font-weight: bold;
+}
+
+.prod-contactagency {
+    margin-top: -10px;
+    font-weight: normal;
+}
+
+.prod-contacttext {
+    margin-left: 150px;
+}
+
+.prod-contactcont {
+    margin-bottom: 15vh;
+}
+
+.prod-contactcontimg {
+    object-fit: cover;
+    width: 100px;
+    height: 100px;
+    float: left;
+    display: block;
+    border-radius: 50%;
+}
+
+/* 
+    =======================
+    Product Features | Similar Properties Pane
+    =======================
+*/
+
+.prod-similarpropscont {
+    min-height: 70vh;
+    height: auto;
+}
+
+.prod-similarpropscontainer {
+    height: auto;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+/* 
+    =======================
+    Index   - Main Pane 
+    =======================
+*/
+
+.index-cont {
+    height: auto;
+}
+
+.index-title {
+    font-size: 4vh;
+    font-weight: bold;
+    margin-bottom: 2vh;
+}
+
+/* 
+    =======================
+    Search - Main Pane 
+    =======================
+*/
+
+.search-img {
+    color: rgb(66, 65, 67);
+}
+
+.search-cont {
+    height: auto;
+    padding-bottom: 10vh;
+    min-height: 100vh;
+}
+
+/* 
+    =======================
+    Search - Filter Pane
+    =======================
+*/
+
+.search-filtercont {
+    background-color: rgb(66, 65, 67);
+    color: white;
+    border-radius: 10px;
+    padding: 2vw;
+    margin-bottom: 2vh;
+    display: none;
+}
+
+.search-title {
+    font-size: 4vh;
+    font-weight: bold;
+}
+
+.search-sortbutton {
+    float: right;
+}
+
+.search-subtitle {
+    margin-bottom: 5vh;
+}
+
+.search-filterlabel {
+    font-weight: bold;
+}
+
+.search-filterradios {
+    float: right;
+}
+
+.search-filterdropdown {
+    width: 270px;
+}
+
+.search-filterradiosmode {
+    padding-left: 1.9vw;
+    padding-right: 1.8vw;
+}
+
+.search-filterbtn {
+    padding: 0px;
+    padding-left: 2vw;
+    padding-right: 2vw;
+    margin-right: 1vw;
+    height: 40px;
+}
+
+.search-filterstext {
+    font-style: italic;
+    margin-bottom: 2vh;
+}
+
+.search-filterbadge {
+    margin-right: 0.5vw;
+    font-style: normal;
+    cursor: pointer;
+}
+
+/* 
+    =======================
+    Catalog | Featured Rent
+    =======================
+*/
+
+.home-featuredrent {
+    background-color: rgb(245, 147, 36);
+    width: 100vw;
+    min-height: 100vh;
+    height: auto;
+    padding-left: 7vw;
+}
+
+.home-featuredrenttext {
+    color: white;
+    font-size: 4vh;
+    padding-top: 15vh;
+}

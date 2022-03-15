@@ -1,0 +1,74 @@
+{% extends "base.html" %}
+
+{% load wagtailcore_tags wagtailimages_tags %}
+{% block body_class %}{% endblock %}
+{% block title %}{{ page_title }}{% endblock %}
+{% block content %}
+    <!-- Product Index Container -->
+    <div class="index-cont">
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="/">Home</a></li>
+                <li class="breadcrumb-item"><a href="/catalog">Catalog</a></li>
+                <li class="breadcrumb-item active" aria-current="page">{{page_title}}</li>
+            </ol>
+        </nav>
+
+        <!-- page.title Is the category name -->
+        <p class="index-title"> {{ page_title }}</p>
+
+        <div class="index-propertycont home-featuredimgcontainer no-gutters">
+
+            <div class="search-subtitle">
+                Returned {{result_list|length}} results.
+                
+                <div class="btn-group search-sortbutton">
+                    <button class="btn btn-secondary btn-sm dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Sort By
+                    </button>
+                    <div class="dropdown-menu dropdown-menu-right">
+                        <button class="dropdown-item" onclick="modifyURL('order', '0')">Price: Highest to Lowest</button>
+                        <button class="dropdown-item" onclick="modifyURL('order', '1')">Price: Lowest to Highest</button>
+                        <div class="dropdown-divider"></div>
+                        <button class="dropdown-item" onclick="modifyURL('order', '2')">Lot Size: Ascending</button>
+                        <button class="dropdown-item" onclick="modifyURL('order', '3')">Lot Size: Descending</button>
+                        <div class="dropdown-divider"></div>
+                        <button class="dropdown-item" onclick="modifyURL('order', '4')">Most Recent</button>
+                        <button class="dropdown-item" onclick="modifyURL('order', '5')">Oldest First</button>
+                    </div>
+                </div>
+            </div>
+            <!-- Getting the individual properties from the catalog's pages -->
+            {% for post in result_list %}
+            
+                <!-- Dividing the rows into four properties per row -->
+                {% if forloop.counter0 == 0 %}
+                    <!-- Create the first row -->
+                    <div class="row catalog-featuredrow">
+                {% elif forloop.counter0|divisibleby:4 %}
+                    </div>
+                    <div class="row catalog-featuredrow">
+                {% endif %}
+
+                {% with post=post.prop %}
+                    {% include "realestate/property_thumbnail.html"%}   
+                {% endwith %}
+
+                <!-- End the row div -->
+                {% if forloop.last %}
+                    </div>
+                {% endif %}
+            {% endfor %}
+            <!-- End of getting the individual properties -->
+
+            {% if search_results.has_previous %}
+                <a href="{% url 'search' %}?query={{ search_query|urlencode }}&amp;page={{ search_results.previous_page_number }}">Previous</a>
+            {% endif %}
+
+            {% if search_results.has_next %}
+                <a href="{% url 'search' %}?query={{ search_query|urlencode }}&amp;page={{ search_results.next_page_number }}">Next</a>
+            {% endif %}
+        </div>
+    </div>
+     <!-- End of Product Index Container -->
+{% endblock %}

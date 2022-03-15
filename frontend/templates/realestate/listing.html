@@ -1,0 +1,240 @@
+<!--
+Property Model in products.Property
+        FieldPanel('property_type'),
+        FieldPanel('location'),
+        FieldPanel('price'),
+        FieldPanel('num_baths'),
+        FieldPanel('num_beds'),
+        FieldPanel('lot_size')
+-->
+
+
+{% extends "base.html" %}
+
+{% load static wagtailcore_tags wagtailimages_tags humanize %}
+
+{% block body_class %}prod-img no-gutters{% endblock %}
+
+{% block content %}
+    <div class="prod-cont container-fluid">
+        <div class="row">
+            <div class="col-lg-6">
+                <div id="carouselIndicators" class="carousel slide prod-carousel" data-ride="carousel">
+                    <ol class="carousel-indicators">
+                        {% for det in page.image.all %}
+                            <li data-target="#carouselIndicators" data-slide-to="{{ forloop.counter0 }}"><img src="../../../media/{{ det.image }}"></li>
+                        {% endfor %}
+                    </ol>
+                    <div class="carousel-inner prod-carouselimgcont">
+                        {% for det in page.image.all %}
+                            <div class="carousel-item {% if forloop.counter0 == 0 %} active {% endif %}">
+                                <img class="d-block w-100 prod-carouselimg" src="../../../media/{{ det.image }}" alt="First slide">
+                                <div class="carousel-caption d-none d-md-block prod-carouseltext">
+                                    <p >{{det.description}}</p>
+                                </div>
+                            </div>
+                        {% endfor %}
+                    </div>
+                    <a class="carousel-control-prev" href="#carouselIndicators" role="button" data-slide="prev">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="sr-only">Previous</span>
+                    </a>
+                    <a class="carousel-control-next" href="#carouselIndicators" role="button" data-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="sr-only">Next</span>
+                    </a>
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <p class="prod-price">₱ {{page.price|intcomma}}</p>
+                <p class="prod-type">{{page.property_type.name}}
+                    <span class="badge badge-secondary prod-badge">
+                            {% if page.purchase_mode == 0 %}
+                                FOR SALE
+                            {% elif page.purchase_mode == 1 %}
+                                FOR RENT
+                            {% endif %}
+                </span></p>
+                <p class="prod-location">{{page.location}}</p>
+                
+                <div class="row">
+                    <div class="prod-icocont">
+                            <img src="{% static 'img/bedroom_g.png' %}"  class="prod-ico">
+                            <p class="prod-icotext"> {{page.num_beds}} </p>
+                    </div>
+                    <div class="prod-icocont">
+                            <img src="{% static 'img/shower_g.png' %}" class="prod-ico">
+                            <p class="prod-icotext"> {{page.num_baths}} </p>
+                    </div>
+                    <div class="prod-icocont">
+                            <img src="{% static 'img/size_g.png' %}" class="prod-ico">
+                            <p class="prod-icotext"> {{page.lot_size|floatformat:2|intcomma}} </p>
+                            <p class="prod-icotext2"> SQ.M. </p>
+                    </div>
+                </div>
+                <div class="prod-desccont">
+                    <p class="prod-type">Description </p>
+                        {% autoescape off %}
+                            {{page.description}}
+                        {% endautoescape %}
+                </div>
+                <span class="badge badge-pill badge-secondary prod-desccontread">Read More</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="prod-detailscont">
+        <div class="row">
+            <div class="col-lg-6">
+                <p class="prod-detailsdetailtitle"> Property Details </p>
+                <div class="prod-detailsdetailtblcont">
+                    <table class="table">
+                        <tr>
+                            <td>
+                                Listed Date
+                            </td>
+                            <td>
+                                {{ page.listed_date }}
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                Fully Furnished
+                            </td>
+                            <td>
+                                {{ page.furnishing_status|yesno:"Yes,No" }}
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                Bedrooms
+                            </td>
+                            <td>
+                                {{ page.num_beds }}
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                Bathrooms
+                            </td>
+                            <td>
+                                {{ page.num_baths }}
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                Floor Area
+                            </td>
+                            <td>
+                                {{ page.floor_area|intcomma }} sq.m.
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                Build Year
+                            </td>
+                            <td>
+                                {{ page.build_year }}
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <p class="prod-featurestitle"> Property Features </p>
+                <div class="prod-featurestextcont">
+                    {% for det in page.features.all %}
+                        <p class="prod-featurestext"> 
+                            <img class="prod-featuresico" src="{% static 'img/check.png' %}">
+                            {{ det.value }} 
+                        </p>
+                    {% endfor %}
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <div class="prod-contactbrokercont">
+        <p class="prod-featurestitle"> Ask About Property </p>
+
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-lg-6">
+                        <form class="prod-contactform">
+                                <div class="form-group col-md-7 prod-contactformgroup">
+                                    <label for="inputEmail4">First Name</label>
+                                    <input type="text" class="form-control" id="inputEmail4" placeholder="First Name">
+                                </div>
+                                <div class="form-group col-md-7 prod-contactformgroup">
+                                    <label for="inputPassword4">Lastname</label>
+                                    <input type="text" class="form-control" id="inputPassword4" placeholder="Last Name">
+                                </div>
+                                <div class="form-group col-md-7 prod-contactformgroup">
+                                    <label for="inputAddress">Email</label>
+                                    <input type="email" class="form-control" id="inputAddress" placeholder="username@example.com">
+                                </div>
+                                <div class="form-group col-md-7 prod-contactformgroup">
+                                    <label for="inputAddress2">Message</label>
+                                    <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" placeholder="Enter your message"></textarea>
+                                </div>
+                                <div class="form-group col-md-7">
+                                    <button type="submit" class="btn btn-outline-secondary col-md-4 global-footersubmit">Send</button>
+                                </div>
+                            </form>
+                </div>
+                <div class="col-lg-6 prod-contactcont">
+                    
+                    {% for det in page.brokers.all %}
+                        <div class="col-lg-12 prod-contactsinglecont">
+                            <hr>
+                            <img class="prod-contactcontimg" src="../../../media/{{ det.broker.picture }}">
+                            
+                            <div class="prod-contacttext">
+                                <p class="prod-contactname">{{det.broker.name|upper}}</p>
+                                <p class="prod-contactagency">{{det.broker.agency}}</p>
+                                <p class="prod-contactagency">{{det.broker.location_city}}, {{det.broker.location_state}}, {{det.broker.location_country}}</p>
+
+                                {% for contact in det.broker.contact.all %}
+                                    <div class="row prod-contactmoredetails">
+                                        {% if contact.contact_type == 0 %}
+                                            <img class="prod-contactico" src="{% static 'img/email.png' %}">
+                                        {% else %}
+                                            <img class="prod-contactico" src="{% static 'img/phone.png' %}">
+                                        {% endif %}
+                                        <p class="prod-contacticotext">{{contact.contact}}</p>
+                                    </div>
+                                {% endfor %}
+
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="prod-similarpropscont">
+        <p class="prod-featurestitle font-weight-bold"> Similar Properties </p>
+        <div class="home-featuredimgcontainer no-gutters">
+            {% for post in page.similarListing.all %}
+                {% if forloop.counter0 == 0 %}
+                    <div class="row catalog-featuredrow">
+                {% elif forloop.counter0|divisibleby:4 %}
+                    </div>
+                    <div class="row catalog-featuredrow">
+                {% endif %}
+                
+                {% with post=post.prop %}
+                    {% include "realestate\property_thumbnail.html"%}
+                {% endwith %}
+
+                {% if forloop.last %}
+                    </div>
+                {% endif %}
+            {% endfor %}
+            </div>    
+        </div>
+    </div>
+{% endblock %}

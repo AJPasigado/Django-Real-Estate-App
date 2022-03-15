@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+
+{% block title %} Jumpstart {% endblock title %}
+{% block custom_css %}
+<style type="text/css">
+    code {
+        color: red;
+        background: whitesmoke;
+        padding: 3px;
+        border-radius: 3px;
+    }
+</style>
+{% endblock custom_css %}
+
+{% block content %}
+    <h1>Thank you for using Jumpstart!</h1>
+    <p>You can start creating apps by following the steps below:</p>
+    <ul>
+        <li>
+            <p>Navigate to <code>apps</code> directory:</p>
+            <code> $ cd apps/ </code>
+        </li>
+        <li>
+            <p>Create your app:</p>
+            <code> $ python ../manage.py startapp &lt;app_name&gt; </code>
+            <p> or </p>
+            <code> $ django-admin startapp &lt;app_name&gt; </code>
+        </li>
+        <li>
+            <p>Open <code>common.py</code> in your text editor</p>
+        </li>
+        <li>
+            <p>Add <code>apps.&lt;app_name&gt;</code> in <code>INSTALLED APPS</code></p>
+            <p>Note: It should follow this standard except for DjangoCMS</p>
+            <p>
+                <code># Django</code>
+                <br><br>
+                <code># Third-party Apps</code>
+                <br><br>
+                <code># Local apps</code>
+            </p>
+        </li>
+        <li>
+            You can now start creating your
+            <code>models,</code>
+            <code>views,</code>
+            <code>admin,</code> and etc.
+        </li>
+    </ul>
+{% endblock content %}

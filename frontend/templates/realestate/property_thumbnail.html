@@ -1,0 +1,31 @@
+{% load static wagtailcore_tags humanize %}
+
+<a class="catalog-featuredimgsinglecontainer" href="{% pageurl post %}">
+    {% for det in post.image.all %}
+        {% if forloop.first %}
+            <img src="../../../media/{{det.image}}" class="catalog-featuredimg">
+        {% endif %}
+    {% endfor %}
+    <div class="catalog-featuredimgoverlay">
+        <div class="catalog-featuredimgoverlaytexts">
+            <p class="catalog-featuredimgoverlaytextprice"> ₱ {{post.price|intcomma}} </p> 
+            <p class="catalog-featuredimgoverlaytexttype"> {{post.property_type.name}}</p> 
+            <p class="catalog-featuredimgoverlaytextloc"> {{post.location}} </p>
+            <div class="row">
+                <div class="col-3">
+                        <img src="{% static 'img/bedroom.png' %}" class="catalog-featuredoverlayico">
+                        <p class="catalog-featuredoverlayicotext"> {{post.num_beds}} </p>
+                </div>
+                <div class="col-3">
+                        <img src="{% static 'img/shower.png' %}" class="catalog-featuredoverlayico">
+                        <p class="catalog-featuredoverlayicotext"> {{post.num_baths}} </p>
+                </div>
+                <div class="col-3">
+                        <img src="{% static 'img/size.png' %}" class="catalog-featuredoverlayico">
+                        <p class="catalog-featuredoverlayicotext"> {{post.lot_size|floatformat:2|intcomma}} </p>
+                        <p class="catalog-featuredoverlaysq">SQ.M.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</a>

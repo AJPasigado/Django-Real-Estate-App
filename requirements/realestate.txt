@@ -1,0 +1,3 @@
+-r local.txt
+wagtail==1.13
+elasticsearch==5.5.2

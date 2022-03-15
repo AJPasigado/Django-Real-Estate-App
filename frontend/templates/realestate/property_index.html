@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+
+{% load wagtailcore_tags wagtailimages_tags %}
+{% block body_class %}{% endblock %}
+
+{% block content %}
+    <!-- Product Index Container -->
+    <div class="container-fluid index-cont">
+
+        <!-- page.title Is the category name -->
+        <p class="index-title">Properties {{ page.title }}</p>
+
+        <div class="index-propertycont home-featuredimgcontainer no-gutters">
+
+            <!-- Getting the individual properties from the catalog's pages -->
+            {% for post in page.get_children %}
+                <!-- Dividing the rows into four properties per row -->
+                {% if forloop.counter0 == 0 %}
+                    <!-- Create the first row -->
+                    <div class="row catalog-featuredrow">
+                {% elif forloop.counter0|divisibleby:4 %}
+                    </div>
+                    <div class="row catalog-featuredrow">
+                {% endif %}
+
+                {% with post=post.specific %}
+                    {% include "property_thumbnail.html"%}   
+                {% endwith %}
+
+                <!-- End the row div -->
+                {% if forloop.last %}
+                    </div>
+                {% endif %}
+            {% endfor %}
+            <!-- End of getting the individual properties -->
+        </div>
+    </div>
+     <!-- End of Product Index Container -->
+{% endblock %}

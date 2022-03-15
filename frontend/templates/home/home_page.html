@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+
+{% load frontend_tags %}
+{% gethomemodel as footer %}
+
+{% block body_class %}home-cont{% endblock %}
+
+{% block search_class %}invisible{% endblock %}
+
+{% block nav_class %}{% endblock %}
+
+{% block content %}
+    <div class="row home-centertext">
+        <div class="col-12">
+            <p class="text-center font-weight-bold">{{footer.home_tagline}}</p>
+        </div>    
+    </div>
+
+    <div class="home-search">
+            <form id="navsearch" class="home-searchform form-row" action="{% url 'Search' %}" method="get">
+                    <div class="form-group row col-md-12 global-navsearch">
+                        <label for="navsearchbox" class="col-md-3 col-form-label global-navsearchlabel">Look for Listings in</label>
+                        <div class="col-md-7 global-navsearchbox">
+                            <input id="navsearchbox" class="form-control" type="text" name="address" placeholder="Enter location" {% if request_params.address_zip.0 %} value="{{ request_params.address }}"{% endif %}>
+                        </div>
+                        <div class="col-md-1 global-navsearchbox">
+                            <button class="btn btn-outline-secondary" type="submit">Go</button>
+                        </div>
+                    </div>
+                </form>
+        </div>
+        
+    <div class="home-pane"></div>
+{% endblock %}

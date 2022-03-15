@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+{% load static wagtailcore_tags %}
+
+{% block body_class %}search-img{% endblock %}
+
+{% block title %}Catalog{% endblock %}
+
+
+{% block nav_class %}{% endblock %}
+
+{% block content %}
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="/">Home</a></li>
+            <li class="breadcrumb-item active">Catalog</li>
+        </ol>
+    </nav>
+
+    <!-- Get list of categories and make list, and loop through -->
+    {% for category in page.get_children.specific %}
+
+        <div class="catalog-featuredcont">
+
+            <p class="catalog-featuredtext font-weight-bold"> {{category.name}} <a class="btn btn-outline-secondary catalog-viewbtn" href="{% url 'ListingIndex' category.id %}">View All</a></p>
+            <p class="catalog-featuredtextdesc"> {{category.description}}</p>
+            <div class="catalog-featuredimgcontainer no-gutters">
+                {% for post in category.featured.all %}
+                    {% if forloop.counter0 == 0 %}
+                        <div class="row catalog-featuredrow">
+                    {% elif forloop.counter0|divisibleby:4 %}
+                        </div>
+                        <div class="row catalog-featuredrow">
+                    {% endif %}
+                    
+                    {% with post=post.prop.prop %}
+                        {% include "realestate/property_thumbnail.html" %}
+                    {% endwith %}
+
+                    {% if forloop.last %}
+                        </div>
+                    {% endif %}
+
+                {% endfor %}
+            </div>
+        </div>
+        
+    {% endfor %}
+    <!-- End of looping through categori-->
+{% endblock %} 

@@ -1,0 +1,147 @@
+{% load static wagtailuserbar %}
+{% load frontend_tags %}
+{% gethomemodel as footer %}
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"><!--<![endif]-->
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>
+        {% block title %} {% if self.seo_title %} {{ self.seo_title }} {% else %} {{ self.title }} {% endif %} {% endblock %} {% block title_suffix %}{% endblock %}
+    </title>
+    <meta name="description" content="" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" /> 
+    
+    {# Global stylesheets #}
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/frontend.css' %}">
+    
+    
+    {% block extra_css %} {# Override this in templates to add extra stylesheets #} {% endblock %}
+
+</head>
+
+<body class="{% block body_class %}{% endblock %}">
+    {% wagtailuserbar %}
+
+    <nav class="navbar fixed-top navbar-expand-lg navbar-light global-nav {% block nav_class %}{% endblock %}">
+        <a class="navbar-brand" href="/">
+            <!-- Company Brand, You can use IMG for icons  -->
+            Ingenuity Real Estate
+        </a>
+
+        <!-- Hamburger Toggle  -->
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        
+        <!-- Navigation Contents  -->
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <!-- Navigation Links  -->
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="/catalog"> Catalog <span class="sr-only">(current)</span></a>
+                </li>
+            </ul>
+            <!-- End of Navigation Links  -->
+
+            <!-- Navigation Search Form  -->
+            <form id="navsearch" class="form-row {% block search_class %}{% endblock %} global-navsearch" action="{% url 'Search' %}" method="get">
+                <div class="form-group row col-md-12">
+                    <label for="navsearchbox" class="col-md-3 col-form-label global-navsearchlabel ml-auto">Look for Listings in</label>
+                    <div class="col-md-7 global-navsearchbox">
+                        <input id="navsearchbox" class="form-control" type="text" name="address" placeholder="Enter location" {% if request_params.address.0 %} value="{{ request_params.address.0 }}"{% endif %}>
+                    </div>
+                    <div class="col-md-2 global-navsearchbox">
+                        <button class="btn btn-outline-secondary" type="submit">Go</button>
+                    </div>
+                </div>
+            </form>
+            <!-- End of Search Form -->
+        </div>
+        <!-- End of Navigation Contents -->
+    </nav>
+ 
+    <!-- global-padding for universal padding -->
+    <div class="global-padding">
+        {% block content %} {% endblock %} 
+    </div>
+    <!-- End of global-padding -->
+
+    <!-- Footer Container -->
+    <div class="container-fluid global-footer {% if not footer.enable_footer %} invisible {% endif %} ">
+        <hr size="30">
+        <div class="row">
+
+            <!-- Footer Contact Column -->
+            <div class="col-lg-6">
+                    <p class="global-footertext font-weight-bold"> Get in touch </p>
+
+                    <form class="global-footerform">
+                        <div class="form-group col-md-7 global-footerformgroup">
+                            <label for="inputEmail4">First Name</label>
+                            <input type="text" class="form-control" id="inputEmail4" placeholder="First Name">
+                        </div>
+                        <div class="form-group col-md-7 global-footerformgroup">
+                            <label for="inputPassword4">Lastname</label>
+                            <input type="text" class="form-control" id="inputPassword4" placeholder="Last Name">
+                        </div>
+                        <div class="form-group col-md-7 global-footerformgroup">
+                            <label for="inputAddress">Email</label>
+                            <input type="email" class="form-control" id="inputAddress" placeholder="username@example.com">
+                        </div>
+                        <div class="form-group col-md-7 global-footerformgroup">
+                            <label for="inputAddress2">Message</label>
+                            <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" placeholder="Enter your message"></textarea>
+                        </div>
+                        <div class="form-group col-md-7 global-footerformgroup">
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" id="gridCheck">
+                                <label class="form-check-label" for="gridCheck">
+                                    Subscribe to newsletter
+                                </label>
+                            </div>
+                        </div>
+                        <div class="form-group col-md-7">
+                            <button type="submit" class="btn btn-outline-secondary col-md-4 global-footersubmit">Sign in</button>
+                        </div>
+                    </form>
+                        
+            </div>
+            <!-- End of Footer Contact Column -->
+
+            <!-- Company Logo and Details -->
+            <div class="col-lg-6">
+
+                 <!-- Company Logo -->
+                <img src="../../../media/{{footer.company_logo}}" class="img-fluid global-footerimg">
+
+                <!-- Company Name -->
+                <p class="global-footercomp text-center"> {{footer.footer_title}} </p>
+                
+                <!-- Company Legal Details -->
+                <div class="global-footercont">
+                    <p class=" text-center"> {{footer.footer_subtitle}}  </p>
+                    <p class="global-footercont text-center"> Real Estate Website Design by Ingenuity Global, Inc.  </p>
+                </div>
+            </div>
+            <!-- End of Company Logo and Details -->
+
+        </div>
+    </div>
+    <!-- End of Footer Container -->
+    
+    {# Global javascript #}
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js" integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script>
+    <script type="text/javascript" src="{% static 'js/frontend.js' %}"></script>
+
+    {% block extra_js %} {# Override this in templates to add extra javascript #} {% endblock %}
+</body>
+
+</html>

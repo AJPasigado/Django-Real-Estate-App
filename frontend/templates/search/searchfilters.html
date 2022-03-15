@@ -1,0 +1,357 @@
+{% load static wagtailcore_tags humanize %}
+
+<div class="search-filterstext"><span class="search-filterbadge badge badge-pill badge-light">SHOW FILTERS ⯆ </span> 
+    <span class="search-filtersapplied">
+        Filters applied: 
+            Price (₱) from              {% if request_params.price_min.0 %} 
+                                            ₱ {{request_params.price_min.0|intcomma}} 
+                                        {% else %} 
+                                            any 
+                                        {% endif %} 
+
+            to                          {% if request_params.price_max.0 %} 
+                                            ₱ {{request_params.price_max.0|intcomma}};
+                                        {% else %} 
+                                            any;
+                                        {% endif %}
+                                        
+            Lot Size (sq.m.) from       {% if request_params.lotsize_min.0 %} 
+                                            {{request_params.lotsize_min.0|intcomma}} sq.m. 
+                                        {% else %} 
+                                            any 
+                                        {% endif %} 
+            
+            to                          {% if request_params.lotsize_max.0 %}
+                                            {{request_params.lotsize_max.0|intcomma}} sq.m.;
+                                        {% else %} 
+                                            any;
+                                        {% endif %}
+                                        
+                                        {% if request_params.bedrooms.0 == '0' or not request_params.bedrooms.0 %} 
+                                            Any number of 
+                                        {% else %} 
+                                            {{request_params.bedrooms.0}} 
+                                        {% endif %} 
+                                            Bedroom(s);
+
+                                        {% if request_params.bathrooms.0 == '0' or not request_params.bathrooms.0 %} 
+                                            Any number of 
+                                        {% else %} 
+                                            {{request_params.bathrooms.0}} 
+                                        {% endif %} 
+                                            Bathroom(s);
+                                        
+                                        Any
+                                        {% for type in listing_types.all %}
+                                            {% if request_params.type.0|slugify == type.id|slugify %} {{type}} {% endif %}
+                                        {% endfor %}
+                                        listing type
+    </span>
+</div> 
+
+<div id="searchfilters" class="container-fluid search-filtercont">
+    <form class="form-row" action="{% url 'Search' %}" method="get">
+
+        <div class="form-group row col-md-9">
+
+            <label class="col-md-2 col-form-label search-filterlabel">
+                Filters
+            </label>
+
+            <input  id="address_city" 
+                    class="invisible" 
+                    type="text" 
+                    name="address_city" 
+                    
+                    {% if request_params.address_city.0 %} 
+                        value="{{ request_params.address_city.0 }}"
+                    {% endif %}>
+            
+            <input  id="address_state" 
+                    class="invisible" 
+                    type="text" 
+                    name="address_state" 
+                    
+                    {% if request_params.address_state.0 %} 
+                        value="{{ request_params.address_state.0 }}"
+                    {% endif %}>
+
+            <input  id="address_country" 
+                    class="invisible" 
+                    type="text" 
+                    name="address_country" 
+                    
+                    {% if request_params.address_country.0 %} 
+                        value="{{ request_params.address_country.0 }}"
+                    {% endif %}>
+
+            <input  id="address_zip" 
+                    class="invisible" 
+                    type="number" 
+                    name="address_zip" 
+                    
+                    {% if request_params.address_zip.0 %} 
+                        value="{{ request_params.address_zip.0 }}"
+                    {% endif %}>
+        </div>
+
+
+        <div class="form-group row col-md-9">
+
+            <label for="bathrooms" class="col-md-2 col-form-label">
+                Purchase Mode
+            </label>
+            
+            <div class="btn-group btn-group-toggle float-right col-md-4" data-toggle="buttons">
+                <label class="btn btn-secondary search-filterradiosmode {% if request_params.options.0 == 'Any' %} active {% endif %}">
+                    <input  id="navsearchtick" 
+                            type="radio" 
+                            name="options" 
+                            value="Any" 
+                            autocomplete="off" 
+                            {% if request_params.options.0 == 'Any' %} checked {% endif %}> Any
+                </label>
+                
+                <label class="btn btn-secondary search-filterradiosmode {% if request_params.options.0 == '0' %} active {% endif %}">
+                    <input  id="navsearchtick" 
+                            type="radio" 
+                            name="options" 
+                            value="0" 
+                            autocomplete="off" 
+                            {% if request_params.options.0 == '0' %} checked {% endif %}> For Sale
+                </label>
+
+                <label class="btn btn-secondary search-filterradiosmode {% if request_params.options.0 == '1' %}  active {% endif %}">
+                    <input  id="navsearchtick" 
+                            type="radio" 
+                            name="options" 
+                            value="1" 
+                            autocomplete="off" 
+                            {% if request_params.options.0 == '1' %}  checked {% endif %}> For Rent
+                </label>
+            </div>
+
+            <div class="col-md-1"></div>
+
+            <label for="bedrooms" class="col-md-2 col-form-label">
+                Bedrooms
+            </label>
+
+            <div id="bedrooms" class="btn-group btn-group-toggle search-filterradios col-md-2" data-toggle="buttons">
+                <label class="btn btn-secondary {% if request_params.bedrooms.0 == '0' %} active {% endif %}">
+                    <input  type="radio" 
+                            name="bedrooms" 
+                            id="bedrooms" 
+                            value=0 
+                            autocomplete="off" 
+                            {% if request_params.bedrooms.0 == '0' %} checked {% endif %}> Any
+                </label>
+
+                <label class="btn btn-secondary {% if request_params.bedrooms.0 == '1' %} active {% endif %}">
+                    <input  type="radio" 
+                            name="bedrooms" 
+                            id="bedrooms" 
+                            value=1 
+                            autocomplete="off" 
+                            {% if request_params.bedrooms.0 == '1' %} checked {% endif %}> 1
+                </label>
+
+                <label class="btn btn-secondary {% if request_params.bedrooms.0 == '2' %} active {% endif %}">
+                    <input  type="radio" 
+                            name="bedrooms" 
+                            id="bedrooms" 
+                            value=2 
+                            autocomplete="off" 
+                            {% if request_params.bedrooms.0 == '2' %} checked {% endif %}> 2
+                </label>
+
+                <label class="btn btn-secondary {% if request_params.bedrooms.0 == '3' %} active {% endif %}">
+                    <input  type="radio" 
+                            name="bedrooms" 
+                            id="bedrooms" 
+                            value=3 
+                            autocomplete="off" 
+                            {% if request_params.bedrooms.0 == '3' %} checked {% endif %}> 3
+                </label>
+
+                <label class="btn btn-secondary {% if request_params.bedrooms.0 == '4' %} active {% endif %}">
+                    <input  type="radio" 
+                            name="bedrooms" 
+                            id="bedrooms" 
+                            value=4 
+                            autocomplete="off" 
+                            {% if request_params.bedrooms.0 == '4' %} checked {% endif %}> 4
+                </label>
+
+                <label class="btn btn-secondary {% if request_params.bedrooms.0 == '5' %} active {% endif %}">
+                    <input  type="radio" 
+                            name="bedrooms" 
+                            id="bedrooms" 
+                            value=5 
+                            autocomplete="off" 
+                            {% if request_params.bedrooms.0 == '5' %} checked {% endif %}> 5
+                </label>
+
+                <label class="btn btn-secondary {% if request_params.bedrooms.0 == '5+' %} active {% endif %}">
+                    <input  type="radio" 
+                            name="bedrooms" 
+                            id="bedrooms" 
+                            value="5+" 
+                            autocomplete="off" 
+                            {% if request_params.bedrooms.0 == '5+' %} checked {% endif %}> 5+
+                </label>
+            </div>
+        </div>
+
+        <div class="form-group row col-md-9">
+            <label for="price_min" class="col-md-2 col-form-label">
+                Price (₱)
+            </label>
+            
+            <div class="col-md-2">
+                <input  type="number" 
+                        min="0" 
+                        class="form-control" 
+                        id="price_min" 
+                        name="price_min" 
+                        placeholder="min" 
+                        
+                        {% if request_params.price_min.0 %} 
+                            value="{{ request_params.price_min.0 }}"
+                        {% endif %}>
+            </div>
+
+            <div class="col-md-2">
+                <input  type="number" 
+                        min="0" 
+                        class="form-control" 
+                        id="price_max" 
+                        name="price_max" 
+                        placeholder="max" 
+                        
+                        {% if request_params.price_max.0 %} 
+                            value="{{ request_params.price_max.0 }}"
+                        {% endif %}>
+            </div>
+
+            <div class="col-md-1"></div>
+
+            <label for="bathrooms" class="col-md-2 col-form-label">
+                Bathrooms
+            </label>
+
+            <div id="bathrooms" class="btn-group btn-group-toggle search-filterradios col-md-2" data-toggle="buttons">
+                <label class="btn btn-secondary {% if request_params.bathrooms.0 == '0' %} active {% endif %}">
+                    <input  type="radio" 
+                            name="bathrooms" 
+                            id="bathrooms" 
+                            value=0 
+                            autocomplete="off" 
+                            {% if request_params.bathrooms.0 == '0' %} checked {% endif %}> Any
+                </label>
+                <label class="btn btn-secondary {% if request_params.bathrooms.0 == '1' %} active {% endif %}">
+                    <input  type="radio" 
+                            name="bathrooms" 
+                            id="bathrooms" 
+                            value=1 
+                            autocomplete="off" 
+                            {% if request_params.bathrooms.0 == '1' %} checked {% endif %}> 1
+                </label>
+
+                <label class="btn btn-secondary {% if request_params.bathrooms.0 == '2' %} active {% endif %}">
+                    <input  type="radio" 
+                            name="bathrooms" 
+                            id="bathrooms" 
+                            value=2 
+                            autocomplete="off" 
+                            {% if request_params.bathrooms.0 == '2' %} checked {% endif %}> 2
+                </label>
+
+                <label class="btn btn-secondary {% if request_params.bathrooms.0 == '3' %} active {% endif %}">
+                    <input  type="radio" 
+                            name="bathrooms" 
+                            id="bathrooms" 
+                            value=3 
+                            autocomplete="off" 
+                            {% if request_params.bathrooms.0 == '3' %} checked {% endif %}> 3
+                </label>
+
+                <label class="btn btn-secondary {% if request_params.bathrooms.0 == '4' %} active {% endif %}">
+                    <input  type="radio" 
+                            name="bathrooms" 
+                            id="bathrooms" 
+                            value=4 
+                            autocomplete="off" 
+                            {% if request_params.bathrooms.0 == '4' %} checked {% endif %}> 4
+                </label>
+
+                <label class="btn btn-secondary {% if request_params.bathrooms.0 == '5' %} active {% endif %}">
+                    <input  type="radio" 
+                            name="bathrooms" 
+                            id="bathrooms" 
+                            value=5 
+                            autocomplete="off" 
+                            {% if request_params.bathrooms.0 == '5' %} checked {% endif %}> 5
+                </label>
+                <label class="btn btn-secondary {% if request_params.bathrooms.0 == '5+' %} active {% endif %}">
+                    <input  type="radio" 
+                            name="bathrooms" 
+                            id="bathrooms" 
+                            value="5+" 
+                            autocomplete="off" 
+                            {% if request_params.bathrooms.0 == '5+' %} checked {% endif %}> 5+
+                </label>
+            </div>
+        </div>
+
+        <div class="form-group row col-md-9">
+            <label for="floorarea_min" class="col-md-2 col-form-label">
+                Floor Area (sq.m.)
+            </label>
+
+            <div class="col-md-2">
+                <input  type="number" 
+                        min="0" 
+                        class="form-control" 
+                        id="floorarea_min" 
+                        name="floorarea_min" 
+                        placeholder="min" 
+                        
+                        {% if request_params.floorarea_min.0 %} 
+                            value="{{ request_params.floorarea_min.0 }}"
+                        {% endif %}>
+            </div>
+
+            <div class="col-md-2">
+                <input  type="number" 
+                        min="0" 
+                        class="form-control" 
+                        id="floorarea_max" 
+                        name="floorarea_max" 
+                        placeholder="max" 
+                        
+                        {% if request_params.floorarea_min.0 %} 
+                            value="{{ request_params.floorarea_max.0 }}"
+                        {% endif %}>
+            </div>
+
+            <div class="col-md-1"></div>
+                
+            <label for="type" class="col-md-2 col-form-label">
+                Listing Type
+            </label>
+
+            <div id="type" class="btn-group btn-group-toggle search-filterradios col-md-3" data-toggle="buttons">
+                <select name="type" class="custom-select search-filterdropdown">
+                    <option value="">   Select a listing type  </option>
+
+                    {% for type in listing_types.all %}
+                        <option value="{{type.id}}" {% if request_params.type.0|slugify == type.id|slugify %} selected {% endif %}>{{type}}</option>
+                    {% endfor %}
+                </select>
+            </div>
+        </div>
+               
+        <button class="btn btn-outline-light ml-auto search-filterbtn" onclick="submitform()">Apply</button>        
+    </form>
+</div>

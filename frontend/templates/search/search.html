@@ -1,0 +1,74 @@
+{% extends "base.html" %}
+{% load static wagtailcore_tags humanize %}
+
+{% block body_class %}search-img{% endblock %}
+
+{% block title %}Search{% endblock %}
+
+{% block content %}
+    <div class="search-cont">
+        <p class="search-title">
+            Properties in
+                {% if request_params.address.0 %}
+                    "
+                    {{request_params.address.0}}
+                    "
+                {% else %}
+                    any location
+                {% endif %}
+            
+        </p>
+
+        {% include "search\searchfilters.html" %}
+
+        <div class="search-subtitle">
+            Returned {{num_results}} results.
+
+            <div class="btn-group search-sortbutton">
+                <button class="btn btn-secondary btn-sm dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Sort By
+                </button>
+                <div class="dropdown-menu dropdown-menu-right">
+                    <button class="dropdown-item" onclick="modifyURL('order', '0')">Price: Highest to Lowest</button>
+                    <button class="dropdown-item" onclick="modifyURL('order', '1')">Price: Lowest to Highest</button>
+                    <div class="dropdown-divider"></div>
+                    <button class="dropdown-item" onclick="modifyURL('order', '2')">Lot Size: Ascending</button>
+                    <button class="dropdown-item" onclick="modifyURL('order', '3')">Lot Size: Descending</button>
+                    <div class="dropdown-divider"></div>
+                    <button class="dropdown-item" onclick="modifyURL('order', '4')">Most Recent</button>
+                    <button class="dropdown-item" onclick="modifyURL('order', '5')">Oldest First</button>
+                </div>
+            </div>
+        </div>
+        
+
+        {% if search_results %}
+            {% for result in search_results %}
+                {% if forloop.counter0 == 0 %}
+                    <div class="row catalog-featuredrow">
+                {% elif forloop.counter0|divisibleby:4 %}
+                    </div>
+                    <div class="row catalog-featuredrow">
+                {% endif %}
+
+                {% with post=result %}
+                    {% include "realestate\property_thumbnail.html"%}
+                {% endwith %}
+
+                {% if forloop.last %}
+                    </div>
+                {% endif %}
+            {% endfor %}
+
+            {% if search_results.has_previous %}
+                <a href="{% url 'search' %}?query={{ search_query|urlencode }}&amp;page={{ search_results.previous_page_number }}">Previous</a>
+            {% endif %}
+
+            {% if search_results.has_next %}
+                <a href="{% url 'search' %}?query={{ search_query|urlencode }}&amp;page={{ search_results.next_page_number }}">Next</a>
+            {% endif %}
+        {% elif search_query %}
+            No results found
+        {% endif %}
+    </div>
+{% endblock %}

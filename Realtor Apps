@@ -1,0 +1,182 @@
+Redfin
+
+Map with pinned locations
+
+Search box with filters
+> Price (min/max)
+> Beds (min/max)
+> Number of baths
+> Property Type (House/Condo/Townhouse/Multi-Family/Land/Other)
+> Homes for Sale/Sold Home Option
+	- Sale (status if Active, Time on App, Open House Only (Y|N) with est time, 
+> Parking Spaces
+	-	Must Have Garage
+> Remarks (other features)
+> Max HOA Fees
+> Must have view
+> Fixer-upper only
+> Waterfront Only
+> Save Search
+
+New Homes
+
+My Account
+> Open House Schedule
+> Favorites
+> Saved Searches
+> Sell Your Home
+
+List
+> Sort By
+> Number of Homes Available
+> Thumbnail
+> Quick View Details
+	- Price
+	- Location
+	- Beds
+	- Baths
+	- Sq. Feet
+
+Details Page
+	> Price
+	> Est. per month
+	> Location
+	> Beds/baths/sq.feet
+	> Description
+	> Touring Schedule
+		- Available Sched
+	> Upcoming Open House
+	> Map
+	> Key Details
+		- Property Type
+		- Prop Style
+		- Community
+		- County
+		- MLS#
+		- Built in
+		- Lot Size
+		- Virtual Tour Link
+		- Parking Information
+			> Driveway type
+			> Garage
+			> Garage Capacity
+			> Parking Capacity
+		- Exterior Information
+			> Double Pane Windows
+			> Covered Patio
+			> Open Porch
+			> Windows Blinds
+			> Windows Draperies
+			> wINDOWS sHADES
+			> Roof: Asphalt Shingles
+			> Patio: 1
+			> Has Pool
+		- HOA Information
+			> Pets: 1
+			> Has HOA
+		- Bathroom Information
+			> # of Baths
+			> Bath Type
+		- Interior Features
+		- Basement Information
+		- Room Information
+		- 1st floor info
+		- school info
+		- Utility Info
+		- tax Info
+		- Property Features
+		- Lot Info
+		- Land info
+
+	> Reviews
+
+	> Paymant Calculator
+		> Customize Calculations
+		> Compare Mortgage Rates
+
+	> Realtor Agent
+
+	> Payment History
+
+	> Schools Serving this Home
+
+	> Public Facts
+		> Beds
+		> Baths
+		> Finished Sq. Ft/
+		> Unfinished
+		> Total Sq. Ft.
+		> Floors
+		> Lot Size
+		> Style
+		> Built
+		> Renovated
+		> County
+		> APN
+
+	> Property Tax
+
+	> Price Estimations for five years
+
+	> Desclaimer
+
+
+
+
+Realtor
+
+Map with pinned locations
+
+Search box with filters
+	> Tabs = Buy, Rent, Just Sold, MLS ID
+	- Price
+	- Beds
+	- Number of Baths
+	- Property type
+	- Property Status
+	- Days on market
+	- Home Size
+	- Lot Size
+	- Age of Home
+	- Home Features
+	- Lot Features
+	- Community Features
+	- Crime Rtae/Schools/Additional props/Satellite
+
+Search
+	- Save Search
+	- Sort
+	- Quick View Details
+		> Proce
+		> Beds
+		> Baths
+		> Lot Size
+		> Location
+		> Brokered by
+
+Details Page
+	- Swipe for Next Result
+	- Thumbnails on top
+	- New Tag
+	- Price
+	- Location
+	- Favorite
+	- House Type
+	- Beds
+	- Baths
+	- Lot Size
+	- Acre Lot
+	- Open House Sched
+	- Schedule a provate showing
+	- Map Directions
+	- Description
+		> Key Facts
+		> More Details
+	- Nearby Schools
+	- Monthly Cost
+	- Props Value History
+	- tax History
+	- Additional Info
+		> Listing Provider
+		> Brokered By
+	- Contact Info
